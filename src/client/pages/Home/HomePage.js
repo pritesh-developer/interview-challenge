@@ -11,7 +11,7 @@ const Home = (menus) => {
                             <span> items</span>
                         </div>
                         <div className="col-6 menu-summary-right">
-                     
+                        <Menu menuList={menus} getSelectedMenu={(menu)=> handleGetSelectedMenu(menu)}></Menu>
                         </div>
                     </div>
                 </div>
