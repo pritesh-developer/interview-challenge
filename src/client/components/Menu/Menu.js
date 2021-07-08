@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 export const Menu = (props) => {
@@ -12,9 +12,11 @@ export const Menu = (props) => {
     }, [dispatch])
 
     const handleOnClick = useCallback((menu)=>{
+        dispatch({type:'ADD_MENU_PREVIEW',payload:{menu}});
     },[]);
 
     const handleSearch = useCallback((e)=>{
+        dispatch({type:'SEARCH_MENUS',payload:{searchString:e.target.value}});
     },[])
 
     return (

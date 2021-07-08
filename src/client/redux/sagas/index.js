@@ -7,11 +7,20 @@ function* fetchMenus(){
   yield put({ type: "MENU_RECEIVED", result:{json:response.items,count:response.items.length}})
 }
 
+function* fetchSearchedMenus(action){
+    const response = yield  fetch(Menu_URL+"/"+action.payload.searchString).then((response) => response.json());
+  
+    yield put({ type: "MENU_SEARCH_RECEIVED", result:{json:response.searchedItems}})
+}
+
 function* watchFetchMenus(){
     yield takeLatest('GET_MENUS',fetchMenus)
 }
 
+function* watchSearchMenus(action){
+    yield takeLatest('SEARCH_MENUS',fetchSearchedMenus)
+}
 
 export default function* rootSaga() {
-    yield all ([watchFetchMenus(),]);
+    yield all ([watchFetchMenus(),watchSearchMenus()]);
 }
