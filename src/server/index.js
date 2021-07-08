@@ -9,4 +9,10 @@ app.use(express.static('dist'));
 
 app.get('/api/items', (req, res) => res.send({ items }));
 
+app.get('/api/items/:searchString', (req, res) => { 
+    const searchedItems = items.filter((item)=> item.name.includes(req.params.searchString))
+    res.send({ searchedItems })
+    }
+    );
+
 app.listen(port, () => console.log(`Listening on port ${port}!`));
