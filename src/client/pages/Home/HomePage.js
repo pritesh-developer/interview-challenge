@@ -1,15 +1,13 @@
 import React, { useCallback, useState } from 'react';
 import { connect } from 'react-redux';
 import { Menu } from '../../components/Menu/Menu';
-import { MenuPreview} from '../../components/MenuPreview/MenuPreview';
+import { MenuPreview } from '../../components/MenuPreview/MenuPreview';
 
 const Home = (menus) => {
-   const [initState, setState] = useState(null);
-   const handleGetSelectedMenu =useCallback((menu) => {
-       console.log("called",menu)
-      setState(menu);
-   },[]);
-   console.log(menus,"menuPreviews")
+    const [initState, setState] = useState(null);
+    const handleGetSelectedMenu = useCallback((menu) => {
+        setState(menu);
+    }, []);
     return (
         <div className="wrapper">
             <div className="menu-summary">
@@ -19,11 +17,11 @@ const Home = (menus) => {
                             <span>{menus.totalSelected} items</span>
                         </div>
                         <div className="col-6 menu-summary-right">
-                        {menus.newCountDietryUI?.ve} <span className="dietary">ve</span>
-            {menus.newCountDietryUI?.v} <span className="dietary">v</span>
-            {menus.newCountDietryUI?.n} <span className="dietary">n!</span>
-            {menus.newCountDietryUI?.df} <span className="dietary">df</span>
-            {menus.newCountDietryUI?.gf} <span className="dietary">gf</span>
+                            {menus.newCountDietryUI?.ve} <span className="dietary">ve</span>
+                            {menus.newCountDietryUI?.v} <span className="dietary">v</span>
+                            {menus.newCountDietryUI?.n} <span className="dietary">n!</span>
+                            {menus.newCountDietryUI?.df} <span className="dietary">df</span>
+                            {menus.newCountDietryUI?.gf} <span className="dietary">gf</span>
                         </div>
                     </div>
                 </div>
@@ -31,49 +29,12 @@ const Home = (menus) => {
             <div className="container menu-builder">
                 <div className="row">
                     <div className="col-4">
-                        <Menu menuList={menus} getSelectedMenu={(menu)=> handleGetSelectedMenu(menu)}></Menu>
+                        <Menu menuList={menus} getSelectedMenu={(menu) => handleGetSelectedMenu(menu)}></Menu>
                     </div>
                     <div className="col-8">
                         <h2>Menu preview</h2>
                         <MenuPreview previews={menus.menuPreviews}></MenuPreview>
-                        {/* <ul className="menu-preview">
-                            <li className="item">
-                                <h2>Dummy item</h2>
-                                <p>
-                                    <span className="dietary">ve</span>
-                                    <span className="dietary">v</span>
-                                    <span className="dietary">n!</span>
-                                </p>
-                                <button className="remove-item">x</button>
-                            </li>
-                            <li className="item">
-                                <h2>Dummy item</h2>
-                                <p>
-                                    <span className="dietary">ve</span>
-                                    <span className="dietary">v</span>
-                                    <span className="dietary">n!</span>
-                                </p>
-                                <button className="remove-item">x</button>
-                            </li>
-                            <li className="item">
-                                <h2>Dummy item</h2>
-                                <p>
-                                    <span className="dietary">ve</span>
-                                    <span className="dietary">v</span>
-                                    <span className="dietary">n!</span>
-                                </p>
-                                <button className="remove-item">x</button>
-                            </li>
-                            <li className="item">
-                                <h2>Dummy item</h2>
-                                <p>
-                                    <span className="dietary">ve</span>
-                                    <span className="dietary">v</span>
-                                    <span className="dietary">n!</span>
-                                </p>
-                                <button className="remove-item">x</button>
-                            </li>
-                        </ul> */}
+
                     </div>
                 </div>
             </div>
@@ -82,11 +43,11 @@ const Home = (menus) => {
 }
 
 const mapStateToProps = (state) => ({
-    menus:state.menus,
-    menuPreviews:state.menuPreviews,
+    menus: state.menus,
+    menuPreviews: state.menuPreviews,
     totalSelected: state.count,
     newCountDietryUI: state.newCountDietry
 })
 
-const HomePage = connect(mapStateToProps,null)(Home)
+const HomePage = connect(mapStateToProps, null)(Home)
 export default HomePage;

@@ -10,8 +10,9 @@ app.use(express.static('dist'));
 app.get('/api/items', (req, res) => res.send({ items }));
 
 app.get('/api/items/:searchString', (req, res) => { 
-    const searchedItems = items.filter((item)=> item.name.includes(req.params.searchString))
-    res.send({ searchedItems })
+    const searchedItems = items.filter((item)=> item.name.toLowerCase().includes(req.params.searchString.toLowerCase()));
+    const filterItems = searchedItems.length >0  ? searchedItems : items;
+    res.send({ searchedItems:filterItems })
     }
     );
 

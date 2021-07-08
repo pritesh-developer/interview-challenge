@@ -10,7 +10,7 @@ const reducer = (state = { menuPreviews: [] }, action) => {
             return { ...state, menus: action.result.json }
         case 'ADD_MENU_PREVIEW':
             {
-                const newCountDietry = createDietryCount(state.menuPreviews)
+                const newCountDietry = createDietryCount(state.menuPreviews.concat(action.payload.menu))
                 return {
                     ...state, menuPreviews: state.menuPreviews.concat(action.payload.menu),
                     count: state.menuPreviews.length + 1, newCountDietry
@@ -19,8 +19,8 @@ const reducer = (state = { menuPreviews: [] }, action) => {
         case 'REMOVE_MENU_PREVIEW':
             {
 
-                const newCountDietry = createDietryCount(state.menuPreviews)
-               
+                const newCountDietry = createDietryCount(state.menuPreviews.filter(menu => menu.id !== action.payload.id))
+
                 return {
                     ...state, menuPreviews: state.menuPreviews.filter(menu => menu.id !== action.payload.id), count: state.menuPreviews.length - 1
                     , newCountDietry
